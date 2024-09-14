@@ -1,7 +1,7 @@
 class Api::OfficesController < ApplicationController
   def index
-    offices = Office.all
-    render json: offices, status: 200
+    offices = Office.includes(:users).all
+    render json: offices.as_json(include: [:users]), status: 200
   end
 
   def store

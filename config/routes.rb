@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
   namespace :api do
-    get "users/index"
-    get "users/show"
-    get "users/store"
-    get "users/update"
-    get "users/delete"
+    get "users" => "users#index"
+    get "users/:id" => "users#show"
+    put "users/:id" => "users#update"
+    delete "users/:id" => "users#destroy"
+    post "users" => "users#store"
+
     get "offices" => "offices#index"
     get "offices/:id" => "offices#show"
     put "offices/:id" => "offices#update"
+    delete "offices/:id" => "offices#destroy"
     post "offices" => "offices#store"
+
+    post "offices/:id/user/:userId" => "office_users#store"
+    delete "offices/:id/user/:userId" => "office_users#destroy"
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
