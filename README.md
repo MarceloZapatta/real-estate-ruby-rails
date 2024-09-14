@@ -28,6 +28,12 @@ You can find the postman collection here https://documenter.getpostman.com/view/
     - An office can have multiple users associated with it.
   - The relationship is managed via a join table, allowing flexible assignment of users to offices and vice versa.
 
+- **Tests cases**: 
+  - Users
+  - Offices
+  - OfficeUsers
+  - Tests can be run in the 6. [Running Tests](#running-tests) topic
+
 ### Authentication:
 - JWT tokens are issued upon login and must be included in the `Authorization` header for accessing protected routes.
 - Example login credentials are provided for an admin user, but the API allows the creation of additional users through the user management endpoints.
