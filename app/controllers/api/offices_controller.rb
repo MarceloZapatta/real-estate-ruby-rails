@@ -1,10 +1,10 @@
 class Api::OfficesController < ApplicationController
   def index
     offices = Office.includes(:users).all
-    render json: offices.as_json(include: [:users]), status: 200
+    render json: offices.as_json(include: [:users]), status: :ok
   end
 
-  def store
+  def create
     office = Office.new(office_params)
     if office.save
       render json: office, status: 201
@@ -17,7 +17,7 @@ class Api::OfficesController < ApplicationController
     office = Office.find(params['id'])
 
     if office.update(office_params)
-      render json: office, status: 200
+      render json: office, status: :ok
     else
       render json: office.errors.full_messages, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class Api::OfficesController < ApplicationController
 
   def show
     office = Office.find(params['id'])
-    render json: office, status: 200
+    render json: office, status: :ok
   end
 
 
@@ -33,7 +33,7 @@ class Api::OfficesController < ApplicationController
     office = Office.find(params['id'])
 
     if office.destroy
-      render json: { message: "Office deleted with success!" }, status: 200
+      render json: { message: "Office deleted with success!" }, status: :ok
     else
       render json: { errors: "Unable to delete office" }, status: :unprocessable_entity
     end

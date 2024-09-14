@@ -2,17 +2,8 @@ Rails.application.routes.draw do
   namespace :api do
     post "login" => "authentication#login"
 
-    get "users" => "users#index"
-    get "users/:id" => "users#show"
-    put "users/:id" => "users#update"
-    delete "users/:id" => "users#destroy"
-    post "users" => "users#store"
-
-    get "offices" => "offices#index"
-    get "offices/:id" => "offices#show"
-    put "offices/:id" => "offices#update"
-    delete "offices/:id" => "offices#destroy"
-    post "offices" => "offices#store"
+    resources :users
+    resources :offices
 
     post "offices/:id/user/:userId" => "office_users#store"
     delete "offices/:id/user/:userId" => "office_users#destroy"
