@@ -42,3 +42,12 @@ end
 
 gem 'jwt', '~> 2.8.2'
 gem 'bcrypt', '~> 3.1.7'
+
+group :development, :test do
+  gem 'factory_bot_rails'
+end
+
+group :test do
+  gem 'database_cleaner-active_record'
+  gem 'faker'
+end
