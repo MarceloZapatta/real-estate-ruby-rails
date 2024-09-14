@@ -13,6 +13,8 @@
 
 This project is a RESTful **API** built using **Ruby on Rails**, focused solely on providing back-end functionality with no front-end interface. The API allows full **CRUD operations** for both **Users** and **Offices**, enabling creation, updating, retrieval, and deletion of records. 
 
+You can find the postman collection here https://documenter.getpostman.com/view/13192503/2sAXqngQcf#auth-info-8736b024-4486-4927-a9cf-59d6252055ae
+
 ### Key Features:
 - **CRUD for Users and Offices**: The API provides endpoints to manage users and offices. Each entity can be created, updated, retrieved, and deleted through RESTful API requests.
   
