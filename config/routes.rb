@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :users
     resources :offices
 
-    post "offices/:id/user/:userId" => "office_users#store"
+    post "offices/:id/user/:userId" => "office_users#store", :as => 'office_users'
     delete "offices/:id/user/:userId" => "office_users#destroy"
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

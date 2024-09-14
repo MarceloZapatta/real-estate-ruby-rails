@@ -1,28 +1,37 @@
 require "test_helper"
 
 class Api::OfficeUsersControllerTest < ActionDispatch::IntegrationTest
-  # test "should get index" do
-  #   get api_office_users_index_url
-  #   assert_response :success
-  # end
+  test "should store office user" do
+    user = User.first
+    token = JsonWebToken.encode(user_id: user.id)
 
-  # test "should get show" do
-  #   get api_office_users_show_url
-  #   assert_response :success
-  # end
+    password = Faker::Internet.password(min_length: 8)
 
-  # test "should get store" do
-  #   get api_office_users_store_url
-  #   assert_response :success
-  # end
+    userToInclude = FactoryBot.create(:user)
+    office = FactoryBot.create(:office)
 
-  # test "should get update" do
-  #   get api_office_users_update_url
-  #   assert_response :success
-  # end
+    post api_office_users_path(office.id, userToInclude.id), headers: { "Authorization" => "Bearer #{token}" }
 
-  # test "should get delete" do
-  #   get api_office_users_delete_url
-  #   assert_response :success
-  # end
+    assert_response :created
+    json_response = JSON.parse(response.body)
+    assert_equal office[:id], json_response['id']
+    assert_equal userToInclude[:id], json_response['users'][0]['id']
+  end
+
+  test "should delete office user" do
+    user = User.first
+    token = JsonWebToken.encode(user_id: user.id)
+
+    userToDelete = FactoryBot.create(:user)
+    office = FactoryBot.create(:office)
+
+    Office.find(office.id).users << userToDelete
+
+    # abort api_office_users_path(office.id, userToDelete.id)
+    delete "/api/offices/#{office.id}/user/#{userToDelete.id}", headers: { "Authorization" => "Bearer #{token}" }
+
+    assert_response :ok
+    assert_equal '{"message":"User removed from office with success!"}', response.body
+  end
 end
+
