@@ -40,4 +40,5 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 end
 
-
+gem 'jwt', '~> 2.8.2'
+gem 'bcrypt', '~> 3.1.7'

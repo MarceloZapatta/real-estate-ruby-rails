@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
+    post "login" => "authentication#login"
+
     get "users" => "users#index"
     get "users/:id" => "users#show"
     put "users/:id" => "users#update"
